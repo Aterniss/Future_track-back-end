@@ -25,7 +25,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '**/Project-API/*.csproj'
+    projects: '**/*.csproj'
     publishTestResults: false
 
 - task: VSBuild@1
