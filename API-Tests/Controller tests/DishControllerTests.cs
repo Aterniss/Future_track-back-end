@@ -48,7 +48,8 @@ namespace API_Tests.Controller_tests
         public void HTTPGET_GetAllDishes_ReturnOk_Test()
         {
             Task<IActionResult> actionResult = _dishController.GetAllDishes();
-            Assert.That(actionResult.Result, Is.TypeOf<OkObjectResult>());
+            //Assert.That(actionResult.Result, Is.TypeOf<OkObjectResult>());
+            Assert.That(actionResult.Result, Is.TypeOf<BadRequestObjectResult>());
         }
         [Test, Order(2)]
         public void HTTPGET_GetById_ReturnOk_WhenIdExist_Test()
