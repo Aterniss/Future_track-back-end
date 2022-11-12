@@ -27,15 +27,8 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-- task: Docker@2
+- task: DotNetCoreCLI@2
   inputs:
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Portal'
-    appType: 'webApp'
-    WebAppName: 'Delivery-dt'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    command: 'test'
+    projects: '**/*.csproj'
+    publishTestResults: false
