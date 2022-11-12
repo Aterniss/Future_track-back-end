@@ -42,10 +42,3 @@ steps:
     zipAfterPublish: True
 
 - task: PublishBuildArtifacts@1
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1 (78208f9d-5b26-4464-9d45-8b8668495634)'
-    appType: 'webApp'
-    WebAppName: 'Delivery-dt'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/Project-API/*.zip'
