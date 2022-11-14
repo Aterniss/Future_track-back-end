@@ -27,7 +27,7 @@ namespace API_Tests.Controller_tests
             .Options;
 
         protected MyDbContext _context;
-
+        //sample comment
 
         [OneTimeSetUp]
         public void Setup()
@@ -36,7 +36,6 @@ namespace API_Tests.Controller_tests
             _context = new MyDbContext(dbContextOptions);
             _context.Database.EnsureCreated();
 
-            
             database.SeedDatabase(_context);
             repo = new DishRepository(_context);
             var profile = new DishProfile();
