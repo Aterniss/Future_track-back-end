@@ -35,7 +35,7 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
-    codeCoverageEnabled: true
+    codeCoverageEnabled: false
     rerunFailedTests: false
 - task: DotNetCoreCLI@2
   inputs:
