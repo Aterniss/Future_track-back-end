@@ -27,6 +27,7 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
@@ -35,8 +36,9 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
-    codeCoverageEnabled: false
-    rerunFailedTests: false
+    runOnlyImpactedTests: false
+    vsTestVersion: '16.0'
+    publishRunAttachments: false
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
