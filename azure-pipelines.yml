@@ -36,9 +36,6 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
-    runOnlyImpactedTests: false
-    vsTestVersion: '16.0'
-    publishRunAttachments: false
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
