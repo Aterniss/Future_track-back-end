@@ -21,6 +21,7 @@ namespace Project_API.Controllers
             this._account = dish;
             this.mapper = mapper;
             this._logger = logger;
+            
         }
 
         [HttpGet()]
@@ -199,7 +200,34 @@ namespace Project_API.Controllers
             }
 
         }
+        [HttpPost("/accounts/register")]
+        public async Task<IActionResult> Register([FromBody] AccountRegistration request)
+        {
+            _logger.LogInformation(ReturnLogMessage("Account", "Register"));
+            if (request.EmailAddress == "" || request.UserName == "" || request.UserPassword == "" || request.FullName == "" || request.UserAddress == "")
+            {
+                var msg = $"Fields: \"User name\", \"Password\", \"Full name\", \"Your address\" and \"e-mail\" are required!";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
+            else if (IsValidEmail(request.EmailAddress) == false)
+            {
+                var msg = $"Email address format is invalid!";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
+            try
+            {
+                await _account.Register(request);
+                return Ok("Succesfully added!");
 
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+        }
 
 
         public static bool IsValidEmail(string email)

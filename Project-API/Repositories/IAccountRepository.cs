@@ -1,4 +1,5 @@
-﻿using Project_API.Models;
+﻿using Project_API.DTO.RequestModels;
+using Project_API.Models;
 
 namespace Project_API.Repositories
 {
@@ -10,6 +11,6 @@ namespace Project_API.Repositories
         Task Update(Account account, int id);
         Task Delete(int id);
         Task<Account> Login(string username, string password);
-
+        Task Register(AccountRegistration request);
     }
 }

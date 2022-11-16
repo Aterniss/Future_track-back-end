@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project_API.DTO.RequestModels;
 using Project_API.Models;
 
 namespace Project_API.Repositories
@@ -69,6 +70,45 @@ namespace Project_API.Repositories
             {
                 return result;
             }
+
+
+        }
+
+        public async Task Register(AccountRegistration request)
+        {
+            var checkUserName = await _context.Accounts.FirstOrDefaultAsync(x => x.UserName == request.UserName);
+            if(checkUserName == null)
+            {
+                var newUser = new User()
+                {
+                    FullName = request.FullName,
+                    UserAddress = request.UserAddress,
+                    IsOver18 = request.IsOver18,
+                    CreatedAt = DateTime.Now,
+                    LastUpdate = DateTime.Now,
+                };
+                await _context.Users.AddAsync(newUser);
+                await _context.SaveChangesAsync();
+                var newAccount = new Account()
+                {
+                    UserName = request.UserName,
+                    UserPassword = request.UserPassword,
+                    EmailAddress = request.EmailAddress,
+                    TelNumber = request.TelNumber = null,
+                    Role = 1, // basic user!
+                    RestaurantId = null,
+                    IdUsers = newUser.IdUser
+                };
+                await _context.Accounts.AddAsync(newAccount);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new BadHttpRequestException("Username already exists!");
+            }
+            
+
+
 
 
         }
