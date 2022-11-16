@@ -46,6 +46,7 @@ namespace Project_API.Repositories
             return await _context.Accounts
                 .Include(x => x.Restaurant)
                 .Include(x => x.IdUsersNavigation)
+                .Include(x => x.RoleNavigation)
                 .ToListAsync();
         }
 
