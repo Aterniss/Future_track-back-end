@@ -125,7 +125,7 @@ namespace Project_API.Repositories
                 }
                 else
                 {
-                    result.UserPassword = account.UserPassword;
+                    //result.UserPassword = account.UserPassword;
                     result.Role = account.Role;
                     result.TelNumber = account.TelNumber;
                    // result.UserName = account.UserName;
