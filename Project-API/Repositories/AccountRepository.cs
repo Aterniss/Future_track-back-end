@@ -107,11 +107,6 @@ namespace Project_API.Repositories
             {
                 throw new BadHttpRequestException("Username already exists!");
             }
-            
-
-
-
-
         }
 
         public async Task Update(Account account, int id)
@@ -133,7 +128,7 @@ namespace Project_API.Repositories
                     result.UserPassword = account.UserPassword;
                     result.Role = account.Role;
                     result.TelNumber = account.TelNumber;
-                    result.UserName = account.UserName;
+                   // result.UserName = account.UserName;
                     result.RestaurantId = account.RestaurantId;
                     result.IdUsers = account.IdUsers;
                     result.EmailAddress = account.EmailAddress;
