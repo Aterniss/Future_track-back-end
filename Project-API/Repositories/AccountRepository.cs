@@ -43,11 +43,18 @@ namespace Project_API.Repositories
 
         public async Task<IEnumerable<Account>> GetAll()
         {
-            return await _context.Accounts
+            try
+            {
+                return await _context.Accounts
                 .Include(x => x.Restaurant)
                 .Include(x => x.IdUsersNavigation)
                 .Include(x => x.RoleNavigation)
                 .ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Something went wrong!");
+            }
         }
 
         public async Task<Account> GetById(int id)
@@ -125,10 +132,10 @@ namespace Project_API.Repositories
                 }
                 else
                 {
-                    //result.UserPassword = account.UserPassword;
+                    
                     result.Role = account.Role;
                     result.TelNumber = account.TelNumber;
-                   // result.UserName = account.UserName;
+                   
                     result.RestaurantId = account.RestaurantId;
                     result.IdUsers = account.IdUsers;
                     result.EmailAddress = account.EmailAddress;

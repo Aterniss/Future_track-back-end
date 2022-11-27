@@ -353,6 +353,45 @@ namespace API_Tests
             };
             _context.OrderDishes.AddRange(orderDishes);
 
+            var accounts = new List<Account>()
+            {
+                new Account()
+                {
+                    Id = 1,
+                    UserName = "account1",
+                    UserPassword = "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918",
+                    EmailAddress = "sample@gmail.com",
+                    RestaurantId = null,
+                    IdUsers = null,
+                    Role = 3,
+                    TelNumber = null,
+                },
+                new Account()
+                {
+                    Id = 2,
+                    UserName = "account2",
+                    UserPassword = "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918",
+                    EmailAddress = "sample1@gmail.com",
+                    RestaurantId = 1,
+                    IdUsers = null,
+                    Role = 2,
+                    TelNumber = null,
+                },
+                new Account()
+                {
+                    Id = 3,
+                    UserName = "account3",
+                    UserPassword = "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918",
+                    EmailAddress = "sample2@gmail.com",
+                    RestaurantId = null,
+                    IdUsers = 1,
+                    Role = 1,
+                    TelNumber = null,
+                }
+
+            };
+            _context.Accounts.AddRange(accounts);
+
             _context.SaveChanges();
 
         }
